@@ -19,6 +19,10 @@ public class EmployeeController {
         kafkaProducer.sendMessage("Data Fetched");
         return employeeRepository.findAll();
     }
+    @GetMapping("/{id}")
+    Employee getEmployById(@PathVariable Long id){
+        return employeeRepository.findById(id).get();
+    }
 
     @PostMapping
     Employee createEmployee(@RequestBody Employee employee)

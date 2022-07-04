@@ -24,6 +24,11 @@ public class ProjectController {
         kafkaProducer.sendMessage("Data Fetched");
         return projectRepository.findAll();
     }
+    @GetMapping("/{id}")
+    Project getspecific(@PathVariable Long id){
+        Project project=projectRepository.findById(id).get();
+        return project;
+    }
 
     @PostMapping
     Project createProject(@RequestBody Project project)

@@ -1,9 +1,9 @@
 package net.springbootkafka.SpringbootMySQLKafka.employee;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
 import net.springbootkafka.SpringbootMySQLKafka.project.Project;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,8 +17,8 @@ public class Employee {
     private String fname;
     private String lname;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "employeeassigned")
+    @JsonIgnoreProperties("employeeassigned")
+    @ManyToMany(mappedBy = "employeeassigned",cascade = {CascadeType.ALL})
     private Set<Project> projects=new HashSet<>();
 
     public String getFname() {
